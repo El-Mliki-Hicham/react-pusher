@@ -13,9 +13,9 @@ function App() {
     const fetchReservation = async () => {
       try {
         const requestBody = {
-          vehicule_id: 97, // Example property, replace with actual data fields
+          vehicule_id: 147, // Example property, replace with actual data fields
           connect: 1, // Example property, replace as needed
-          chauffeur_id: 133, // Example property, replace as neede
+          chauffeur_id: 292, // Example property, replace as neede
         };
         const response = await fetch(
           "https://app.mojanah.com/api/connectAndDisconnectChauffeur",
@@ -69,6 +69,11 @@ function App() {
       //     data.reservation,
       //   ]); // Assuming data.book should be data.region
       //   setNotification(true); // ShDow notification on new region
+    });
+    const channelAnnuler = pusher.subscribe("reservation-annuler");
+    // Listen for a 'book-event' and update state accordingly
+    channelAnnuler.bind("reservation-annuler-event", (data) => {
+      console.log(data);
     });
 
     // Cleanup
